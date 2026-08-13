@@ -6,7 +6,6 @@ import com.microsoft.playwright.Page;
 public class LoginPage extends BasePage {
     private final Locator emailInput;
     private final Locator passwordInput;
-    private final Locator rememberCheckbox;
     private final Locator loginButton;
     private final Locator loginErrorMessage;
 
@@ -14,7 +13,6 @@ public class LoginPage extends BasePage {
         super(page);
         emailInput = page.locator("#Email");
         passwordInput = page.locator("#Password");
-        rememberCheckbox = page.locator("#RememberMe");
         loginButton = page.locator(".login-button");
         loginErrorMessage = page.locator(".validation-summary-errors");
     }

@@ -13,7 +13,7 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.27.7'
     testCompileOnly 'org.projectlombok:lombok:1.18.46'
     testImplementation 'org.testng:testng:7.12.0'
-    implementation 'com.microsoft.playwright:playwright:1.62.0'
+    testImplementation 'com.microsoft.playwright:playwright:1.62.0'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.46'
 }

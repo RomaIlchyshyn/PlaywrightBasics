@@ -16,21 +16,14 @@ public class RegisterUser {
     public TestUser registerNewUser() {
 
         TestUser user = createUser();
-
         HomePage homePage = new HomePage(page);
         RegisterPage registerPage = homePage.clickRegister();
+        registerPage.registerUser(user);
 
-        registerPage.registerUser(
-                user.getFirstName(),
-                user.getLastName(),
-                user.getEmail(),
-                user.getPassword()
-        );
-        registerPage.clickOnContinueButton();
         return user;
 
     }
-    private TestUser createUser() {
+    public TestUser createUser() {
 
         return new TestUser(
                 faker.name().firstName(),

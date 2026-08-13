@@ -2,6 +2,7 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import models.TestUser;
 
 public class RegisterPage extends BasePage{
     private final Locator genderRadioButton;
@@ -12,8 +13,8 @@ public class RegisterPage extends BasePage{
     private final Locator confirmPasswordInput;
     private final Locator registerButton;
     private final Locator registerErrorMessage;
-    public final Locator registrationResult;
-    public final Locator continueButton;
+    private final Locator registrationResult;
+    private final Locator continueButton;
 
     public RegisterPage(Page page) {
         super(page);
@@ -28,38 +29,38 @@ public class RegisterPage extends BasePage{
         registrationResult = page.locator(".result");
         continueButton = page.locator(".button-1.register-continue-button");
     }
-    public void clickOnGender() {
+    public void clickGender() {
         genderRadioButton.click();
     }
-    public void inputFirstName(String firstname) {
+    public void fillFirstName(String firstname) {
         firstNameInput.fill(firstname);
     }
-    public void inputLastName(String lastname) {
+    public void fillLastName(String lastname) {
         lastNameInput.fill(lastname);
     }
-    public void inputEmail(String email) {
+    public void fillEmail(String email) {
         emailInput.fill(email);
     }
-    public void inputPassword(String password) {
+    public void fillPassword(String password) {
         passwordInput.fill(password);
     }
-    public void inputConfirmButton(String password) {
+    public void fillConfirmPassword(String password) {
         confirmPasswordInput.fill(password);
     }
-    public void clickOnRegisterButton() {
+    public void clickRegister() {
         registerButton.click();
     }
-    public boolean errorAppear() {
+    public boolean isRegistrationErrorVisible() {
         return registerErrorMessage.isVisible();
     }
-    public void registerUser(String firstname, String lastname, String email, String password){
-        clickOnGender();
-        inputFirstName(firstname);
-        inputLastName(lastname);
-        inputEmail(email);
-        inputPassword(password);
-        inputConfirmButton(password);
-        clickOnRegisterButton();
+    public void registerUser(TestUser user){
+        clickGender();
+        fillFirstName(user.getFirstName());
+        fillLastName(user.getLastName());
+        fillEmail(user.getEmail());
+        fillPassword(user.getPassword());
+        fillConfirmPassword(user.getPassword());
+        clickRegister();
     }
     public HomePage clickOnContinueButton() {
         continueButton.click();

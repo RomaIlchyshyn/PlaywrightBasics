@@ -1,13 +1,12 @@
 package tests;
 
-import Constants.ConstatsStorage;
+import сonstants.ConstantsStorage;
 import base.BaseTest;
 import helpers.RegisterUser;
 import models.TestUser;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
-import pages.RegisterPage;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -20,17 +19,19 @@ public class LoginPageTest extends BaseTest {
         TestUser user = registerUser.registerNewUser();
         HomePage homePage = new HomePage(page);
         homePage.logout();
-        LoginPage loginPage = homePage.clickOnLogin();
-        loginPage.login(user.getEmail(), user.getPassword());
-        assertThat(homePage.isLogoutButtonVisible()).isTrue();
-        assertThat(homePage.getAuthorizedUser()).isEqualTo(user.getEmail());
+        LoginPage loginPage = homePage.clickLogin();
+        HomePage authorizedHomePage =
+                loginPage.login(user.getEmail(), user.getPassword());
+        assertThat(authorizedHomePage.isLogoutButtonVisible()).isTrue();
+        assertThat(authorizedHomePage.getAuthorizedUser())
+                .isEqualTo(user.getEmail());
     }
 
     @Test
     public void verifyLoginWithInvalidCredentials() {
         HomePage homePage = new HomePage(page);
-        LoginPage loginPage = homePage.clickOnLogin();
-        loginPage.login(ConstatsStorage.INVALID_EMAIL, ConstatsStorage.INVALID_PASSWORD);
+        LoginPage loginPage = homePage.clickLogin();
+        loginPage.login(ConstantsStorage.UNREGISTERED_EMAIL, ConstantsStorage.INVALID_PASSWORD);
         assertThat(loginPage.errorMessageDisplayed()).isTrue();
         assertThat(homePage.isLogoutButtonVisible()).isFalse();
 

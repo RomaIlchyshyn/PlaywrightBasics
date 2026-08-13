@@ -2,9 +2,11 @@ package tests;
 
 import base.BaseTest;
 
+import helpers.RegisterUser;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.RegisterPage;
+import models.TestUser;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -14,9 +16,13 @@ public class RegisterUserTest extends BaseTest {
     public void verifySuccessfulRegistration() {
         HomePage homePage = new HomePage(page);
         RegisterPage registerPage = homePage.clickRegister();
-        registerPage.registerUser("Test", "test", "test4123524752444@test.com","123123");
-        assertThat(registerPage.getRegistrationResult()).contains("Your registration completed");
-        registerPage.clickOnContinueButton();
-        assertThat(homePage.isLogoutButtonVisible()).isTrue();
+        RegisterUser registerUser = new RegisterUser(page);
+        TestUser user = registerUser.createUser();
+        registerPage.registerUser(user);
+        assertThat(registerPage.getRegistrationResult())
+                .contains("Your registration completed");
+        HomePage authorizedHomePage = registerPage.clickOnContinueButton();
+        assertThat(authorizedHomePage.isLogoutButtonVisible())
+                .isTrue();
     }
 }
