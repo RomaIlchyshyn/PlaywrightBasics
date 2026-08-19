@@ -8,7 +8,7 @@ import pages.RegisterPage;
 
 public class RegisterUser {
     private final Page page;
-    Faker faker = new Faker();
+    private final Faker faker = new Faker();
 
     public RegisterUser(Page page) {
         this.page = page;

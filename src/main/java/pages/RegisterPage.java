@@ -30,35 +30,35 @@ public class RegisterPage extends BasePage {
         continueButton = page.locator(".button-1.register-continue-button");
     }
 
-    public void clickGender() {
+    private void clickGender() {
         genderRadioButton.click();
     }
 
-    public void fillFirstName(String firstname) {
+    private void fillFirstName(String firstname) {
         firstNameInput.fill(firstname);
     }
 
-    public void fillLastName(String lastname) {
+    private void fillLastName(String lastname) {
         lastNameInput.fill(lastname);
     }
 
-    public void fillEmail(String email) {
+    private void fillEmail(String email) {
         emailInput.fill(email);
     }
 
-    public void fillPassword(String password) {
+    private void fillPassword(String password) {
         passwordInput.fill(password);
     }
 
-    public void fillConfirmPassword(String password) {
+    private void fillConfirmPassword(String password) {
         confirmPasswordInput.fill(password);
     }
 
-    public void clickRegister() {
+    private void clickRegister() {
         registerButton.click();
     }
 
-    public boolean isRegistrationErrorVisible() {
+    private boolean isRegistrationErrorVisible() {
         return registerErrorMessage.isVisible();
     }
 

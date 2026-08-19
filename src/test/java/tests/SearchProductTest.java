@@ -3,7 +3,8 @@ package tests;
 import base.BaseTest;
 import org.testng.annotations.Test;
 import pages.SearchResultPage;
-import constants.ConstantsStorage;
+import static constants.ConstantsStorage.NON_EXISTENT_SEARCH_QUERY;
+import static constants.ConstantsStorage.SEARCH_QUERY;
 
 
 public class SearchProductTest extends BaseTest {
@@ -11,13 +12,13 @@ public class SearchProductTest extends BaseTest {
 
     @Test
     public void verifySuccessfulSearch() {
-        searchResultPage = homePage.searchProduct(ConstantsStorage.SEARCH_QUERY);
-        searchResultPage.verifyProductIsDisplayed(ConstantsStorage.SEARCH_QUERY);
+        searchResultPage = homePage.searchProduct(SEARCH_QUERY);
+        searchResultPage.verifyProductIsDisplayed(SEARCH_QUERY);
     }
 
     @Test
     public void verifySearchWithUnexistentProduct() {
-        searchResultPage = homePage.searchProduct(ConstantsStorage.NON_EXISTENT_SEARCH_QUERY);
+        searchResultPage = homePage.searchProduct(NON_EXISTENT_SEARCH_QUERY);
         searchResultPage.verifyNoResults();
     }
 }
