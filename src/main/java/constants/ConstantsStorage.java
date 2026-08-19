@@ -1,4 +1,4 @@
-package сonstants;
+package constants;
 
 public class ConstantsStorage {
     public static final String UNREGISTERED_EMAIL = "test@test.com";

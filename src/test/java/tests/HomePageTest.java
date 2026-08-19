@@ -10,9 +10,7 @@ public class HomePageTest extends BaseTest {
 
     @Test
     public void homePageIsOpened() {
-
-        HomePage homePage = new HomePage(page);
-
+        homePage = new HomePage(page);
         assertThat(homePage.getTitle()).isEqualTo("Demo Web Shop");
     }
 }

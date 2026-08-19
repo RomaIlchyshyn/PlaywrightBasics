@@ -6,6 +6,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import pages.HomePage;
+import pages.LoginPage;
+import pages.RegisterPage;
 import utils.ConfigManager;
 
 import java.nio.file.Paths;
@@ -16,6 +19,9 @@ public abstract class BaseTest {
     protected Browser browser;
     protected BrowserContext context;
     protected Page page;
+    protected HomePage homePage;
+    protected LoginPage loginPage;
+    protected RegisterPage registerPage;
 
     protected BaseTest() {
     }
@@ -32,6 +38,9 @@ public abstract class BaseTest {
         context = browser.newContext();
         page = context.newPage();
         page.navigate(ConfigManager.get("baseUrl"));
+        homePage = new HomePage(page);
+        loginPage = new LoginPage(page);
+        registerPage = new RegisterPage(page);
     }
 
     @AfterMethod
