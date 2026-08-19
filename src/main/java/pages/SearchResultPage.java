@@ -2,10 +2,11 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 
-public class SearchResultPage extends BasePage{
+public class SearchResultPage extends BasePage {
     private final Locator productItems;
     private final Locator noResultsMessage;
 
@@ -16,12 +17,10 @@ public class SearchResultPage extends BasePage{
     }
 
     public void verifyProductIsDisplayed(String productName) {
-        Locator product = productItems
-                .filter(new Locator.FilterOptions()
-                        .setHasText(productName))
-                .first();
+        Locator product = productItems.filter(new Locator.FilterOptions().setHasText(productName)).first();
         assertThat(product).isVisible();
     }
+
     public void verifyNoResults() {
         assertThat(noResultsMessage).isVisible();
     }

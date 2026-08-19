@@ -17,7 +17,7 @@ public class LoginPage extends BasePage {
         loginErrorMessage = page.locator(".validation-summary-errors");
     }
 
-    public HomePage login(String email, String password){
+    public HomePage login(String email, String password) {
         emailInput.fill(email);
         passwordInput.fill(password);
         loginButton.click();

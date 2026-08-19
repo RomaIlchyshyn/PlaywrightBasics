@@ -1,10 +1,10 @@
 package tests;
 
-import сonstants.ConstantsStorage;
 import base.BaseTest;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.SearchResultPage;
+import сonstants.ConstantsStorage;
 
 
 public class SearchProductTest extends BaseTest {
@@ -15,6 +15,7 @@ public class SearchProductTest extends BaseTest {
         SearchResultPage searchResultPage = homePage.searchProduct(ConstantsStorage.SEARCH_QUERY);
         searchResultPage.verifyProductIsDisplayed(ConstantsStorage.SEARCH_QUERY);
     }
+
     @Test
     public void verifySearchWithUnexistentProduct() {
         HomePage homePage = new HomePage(page);

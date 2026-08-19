@@ -13,6 +13,7 @@ public class RegisterUser {
     public RegisterUser(Page page) {
         this.page = page;
     }
+
     public TestUser registerNewUser() {
 
         TestUser user = createUser();
@@ -23,13 +24,9 @@ public class RegisterUser {
         return user;
 
     }
+
     public TestUser createUser() {
 
-        return new TestUser(
-                faker.name().firstName(),
-                faker.name().lastName(),
-                faker.internet().emailAddress(),
-                faker.internet().password()
-        );
+        return new TestUser(faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), faker.internet().password());
     }
 }

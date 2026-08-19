@@ -13,7 +13,6 @@ public class HomePageTest extends BaseTest {
 
         HomePage homePage = new HomePage(page);
 
-        assertThat(homePage.getTitle())
-                .isEqualTo("Demo Web Shop");
+        assertThat(homePage.getTitle()).isEqualTo("Demo Web Shop");
     }
 }

@@ -1,13 +1,13 @@
 package base;
 
 import com.microsoft.playwright.*;
-import lombok.AllArgsConstructor;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import utils.ConfigManager;
+
 import java.nio.file.Paths;
 
 
@@ -36,7 +36,7 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        if(!result.isSuccess() && page != null) {
+        if (!result.isSuccess() && page != null) {
             String screenshotPath = "build/screenshots/" + result.getName() + ".png";
             page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get(screenshotPath)));
         }
@@ -44,9 +44,10 @@ public abstract class BaseTest {
             context.close();
         }
     }
+
     @AfterClass
     public void tearDownBrowser() {
-        if(browser != null) {
+        if (browser != null) {
             browser.close();
         }
         if (playwright != null) {

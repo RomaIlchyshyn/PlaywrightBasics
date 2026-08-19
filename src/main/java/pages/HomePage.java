@@ -4,7 +4,7 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
 
     private final Locator searchField;
     private final Locator registerButton;
@@ -24,20 +24,25 @@ public class HomePage extends BasePage{
     public void logout() {
         logoutButton.click();
     }
+
     public RegisterPage clickRegister() {
         registerButton.click();
         return new RegisterPage(page);
     }
+
     public LoginPage clickLogin() {
         loginButton.click();
         return new LoginPage(page);
     }
+
     public boolean isLogoutButtonVisible() {
         return logoutButton.isVisible();
     }
+
     public String getAuthorizedUser() {
         return email.textContent();
     }
+
     public SearchResultPage searchProduct(String product) {
         searchField.fill(product);
         page.keyboard().press("Enter");
