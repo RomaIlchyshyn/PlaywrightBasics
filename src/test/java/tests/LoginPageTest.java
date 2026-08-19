@@ -12,7 +12,7 @@ import static constants.ConstantsStorage.UNREGISTERED_EMAIL;
 
 public class LoginPageTest extends BaseTest {
 
-    @Test
+    @Test(description = "Verify successful login")
     public void verifySuccessfulLogin() {
         RegisterUser registerUser = new RegisterUser(page);
         registerPageBO.clickRegister();

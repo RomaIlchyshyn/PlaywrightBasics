@@ -1,6 +1,7 @@
 package pages;
 
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
 
 public class BasePage {
 
@@ -9,7 +10,7 @@ public class BasePage {
     protected BasePage(Page page) {
         this.page = page;
     }
-
+    @Step("Get current title")
     public String getTitle() {
         return page.title();
     }

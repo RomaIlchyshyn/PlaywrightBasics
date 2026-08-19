@@ -3,23 +3,25 @@ package base;
 import bo.LoginPageBO;
 import bo.RegisterPageBO;
 import com.microsoft.playwright.*;
+import io.qameta.allure.Step;
+import io.qameta.allure.testng.AllureTestNg;
+import lombok.Getter;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.RegisterPage;
 import utils.ConfigManager;
+import utils.TestListener;
 
-import java.nio.file.Paths;
 
-
+@Listeners({AllureTestNg.class, TestListener.class, })
 public abstract class BaseTest {
+
     protected Playwright playwright;
     protected Browser browser;
     protected BrowserContext context;
+    @Getter
     protected Page page;
     protected HomePage homePage;
     protected LoginPage loginPage;
@@ -31,6 +33,7 @@ public abstract class BaseTest {
     }
 
     @BeforeClass
+    @Step("Initializing playwright and browser instance")
     public void setUpBrowser() {
         playwright = Playwright.create();
         boolean headless = Boolean.parseBoolean(ConfigManager.get("headless"));
@@ -38,6 +41,7 @@ public abstract class BaseTest {
     }
 
     @BeforeMethod
+    @Step("Initializing context, page and test related classes")
     public void setUp() {
         context = browser.newContext();
         page = context.newPage();
@@ -51,16 +55,13 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        if (!result.isSuccess() && page != null) {
-            String screenshotPath = "build/screenshots/" + result.getName() + ".png";
-            page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get(screenshotPath)));
-        }
         if (context != null) {
             context.close();
         }
     }
 
     @AfterClass
+    @Step("Tear down browser and context instance")
     public void tearDownBrowser() {
         if (browser != null) {
             browser.close();

@@ -3,9 +3,9 @@ package helpers;
 import bo.RegisterPageBO;
 import com.github.javafaker.Faker;
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
 import models.TestUser;
-import pages.HomePage;
-import pages.RegisterPage;
+
 
 public class RegisterUser {
     private final Page page;
@@ -15,6 +15,7 @@ public class RegisterUser {
         this.page = page;
     }
 
+    @Step("New test user registration")
     public TestUser registerNewUser(RegisterPageBO registerPageBO) {
 
         TestUser user = createUser();
@@ -22,7 +23,7 @@ public class RegisterUser {
         return user;
 
     }
-
+    @Step("Creating of new user")
     public TestUser createUser() {
 
         return new TestUser(faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), faker.internet().password());

@@ -1,6 +1,7 @@
 package bo;
 
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
 import pages.HomePage;
 import pages.LoginPage;
 
@@ -12,7 +13,7 @@ public class LoginPageBO {
         this.page = page;
         this.loginPage = new LoginPage(page);
     }
-
+    @Step("User registration with email: {email} and password: {password}" )
     public HomePage login(String email, String password) {
         loginPage.fillEmail(email);
         loginPage.fillPassword(password);
