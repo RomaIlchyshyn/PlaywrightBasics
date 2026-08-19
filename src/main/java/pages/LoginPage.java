@@ -17,11 +17,14 @@ public class LoginPage extends BasePage {
         loginErrorMessage = page.locator(".validation-summary-errors");
     }
 
-    public HomePage login(String email, String password) {
+    public void fillEmail(String email) {
         emailInput.fill(email);
+    }
+    public void fillPassword(String password) {
         passwordInput.fill(password);
+    }
+    public void clickLogin() {
         loginButton.click();
-        return new HomePage(page);
     }
 
     public boolean errorMessageDisplayed() {

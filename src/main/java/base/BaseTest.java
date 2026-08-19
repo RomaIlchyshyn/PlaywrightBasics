@@ -1,5 +1,7 @@
 package base;
 
+import bo.LoginPageBO;
+import bo.RegisterPageBO;
 import com.microsoft.playwright.*;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -22,6 +24,8 @@ public abstract class BaseTest {
     protected HomePage homePage;
     protected LoginPage loginPage;
     protected RegisterPage registerPage;
+    protected LoginPageBO loginPageBO;
+    protected RegisterPageBO registerPageBO;
 
     protected BaseTest() {
     }
@@ -41,6 +45,8 @@ public abstract class BaseTest {
         homePage = new HomePage(page);
         loginPage = new LoginPage(page);
         registerPage = new RegisterPage(page);
+        loginPageBO = new LoginPageBO(page);
+        registerPageBO = new RegisterPageBO(page);
     }
 
     @AfterMethod

@@ -15,10 +15,11 @@ public class LoginPageTest extends BaseTest {
     @Test
     public void verifySuccessfulLogin() {
         RegisterUser registerUser = new RegisterUser(page);
-        TestUser user = registerUser.registerNewUser();
+        registerPageBO.clickRegister();
+        TestUser user = registerUser.registerNewUser(registerPageBO);
         homePage.logout();
         loginPage = homePage.clickLogin();
-        HomePage authorizedHomePage = loginPage.login(user.getEmail(), user.getPassword());
+        HomePage authorizedHomePage = loginPageBO.login(user.getEmail(), user.getPassword());
         assertThat(authorizedHomePage.isLogoutButtonVisible()).isTrue();
         assertThat(authorizedHomePage.getAuthorizedUser()).isEqualTo(user.getEmail());
     }
@@ -26,7 +27,7 @@ public class LoginPageTest extends BaseTest {
     @Test
     public void verifyLoginWithInvalidCredentials() {
         loginPage = homePage.clickLogin();
-        loginPage.login(UNREGISTERED_EMAIL, INVALID_PASSWORD);
+        loginPageBO.login(UNREGISTERED_EMAIL, INVALID_PASSWORD);
         assertThat(loginPage.errorMessageDisplayed()).isTrue();
         assertThat(homePage.isLogoutButtonVisible()).isFalse();
 

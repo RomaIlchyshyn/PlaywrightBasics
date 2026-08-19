@@ -2,7 +2,7 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import models.TestUser;
+
 
 public class RegisterPage extends BasePage {
     private final Locator genderRadioButton;
@@ -30,31 +30,31 @@ public class RegisterPage extends BasePage {
         continueButton = page.locator(".button-1.register-continue-button");
     }
 
-    private void clickGender() {
+    public void clickGender() {
         genderRadioButton.click();
     }
 
-    private void fillFirstName(String firstname) {
+    public void fillFirstName(String firstname) {
         firstNameInput.fill(firstname);
     }
 
-    private void fillLastName(String lastname) {
+    public void fillLastName(String lastname) {
         lastNameInput.fill(lastname);
     }
 
-    private void fillEmail(String email) {
+    public void fillEmail(String email) {
         emailInput.fill(email);
     }
 
-    private void fillPassword(String password) {
+    public void fillPassword(String password) {
         passwordInput.fill(password);
     }
 
-    private void fillConfirmPassword(String password) {
+    public void fillConfirmPassword(String password) {
         confirmPasswordInput.fill(password);
     }
 
-    private void clickRegister() {
+    public void clickRegister() {
         registerButton.click();
     }
 
@@ -62,15 +62,6 @@ public class RegisterPage extends BasePage {
         return registerErrorMessage.isVisible();
     }
 
-    public void registerUser(TestUser user) {
-        clickGender();
-        fillFirstName(user.getFirstName());
-        fillLastName(user.getLastName());
-        fillEmail(user.getEmail());
-        fillPassword(user.getPassword());
-        fillConfirmPassword(user.getPassword());
-        clickRegister();
-    }
 
     public HomePage clickOnContinueButton() {
         continueButton.click();

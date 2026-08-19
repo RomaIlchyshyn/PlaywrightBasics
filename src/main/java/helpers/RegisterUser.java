@@ -1,5 +1,6 @@
 package helpers;
 
+import bo.RegisterPageBO;
 import com.github.javafaker.Faker;
 import com.microsoft.playwright.Page;
 import models.TestUser;
@@ -14,13 +15,10 @@ public class RegisterUser {
         this.page = page;
     }
 
-    public TestUser registerNewUser() {
+    public TestUser registerNewUser(RegisterPageBO registerPageBO) {
 
         TestUser user = createUser();
-        HomePage homePage = new HomePage(page);
-        RegisterPage registerPage = homePage.clickRegister();
-        registerPage.registerUser(user);
-
+        registerPageBO.registerUser(user);
         return user;
 
     }
